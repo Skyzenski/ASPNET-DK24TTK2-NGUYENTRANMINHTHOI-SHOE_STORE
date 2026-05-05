@@ -77,12 +77,12 @@
         {
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="@Url.Content($"~/img/blog/{blog.Anhdaidien}")" class="bd-placeholder-img card-img-top" width="100%" height="225" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <img src="@Url.Content("~/img/blog/" + blog.Anhdaidien)" class="card-img-top" style="width: 100%; height: 225px; object-fit: cover;" alt="Blog Image">
                     <div class="card-body">
                         <h5 class="card-title">@blog.Theloai</h5>
                         <p class="card-text">@Html.Raw(blog.Noidung.Substring(0, Math.Min(blog.Noidung.Length, 100)))...</p>
                         <div class="d-flex justify-content-between align-items-center">
-                                <a href="@Url.Action("Detail", "Blog", new { id = blog.Mablog })" class="btn btn-sm btn-outline-secondary">View More</a>
+                                <a href="@Url.Action("Detail", "Blog", new { id = blog.Mablog })" class="btn btn-sm btn-outline-secondary">More</a>
                         </div>
                     </div>
                 </div>
