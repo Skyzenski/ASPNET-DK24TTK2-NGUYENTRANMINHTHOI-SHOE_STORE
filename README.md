@@ -12,4 +12,4 @@
 + Thao tác trong Visual Studio -> Copy dòng lệnh từ tabs [Databases] trong Connection String past vào dòng 62 trong ShoesDbContext.cs và dòng 9 trong appsetting.json
 + Mở giao diện web lên tìm và sửa lỗi và thay đổi nội dung trong khả năng
 + Giao diện BLOG có phần bị lỗi, tiến hành sửa trong [Index.cshtml*] -> Code lỗi từ template lưu lại từ dòng 72 -> 95; code đã sửa từ dòng 96 -> 133
-+ Trong [Index.cshtml*] cố gắng sữa text "Thumbnail" ngay tại trong dbo.BLOG [Data] nhưng không thành công vì web sẽ sập không rõ cách khắc phục.
++ Trong [Index.cshtml*] cố gắng sữa text "Thumbnail" ngay tại Database, sửa trong dbo.BLOG [Data] nhưng không thành công vì web sẽ sập không rõ cách khắc phục.
