@@ -33,7 +33,7 @@
    - Là chức năng của Template, không rõ cách dùng
    - Không thể xóa chức năng thưởng coin vì làm hỏng code của trang **Check Out** nên giữ nguyên
 
-## 7. Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
+# 7. Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
 
 #Cấu trúc cơ bản của một trang ASP.NET MVC/Core
 - Controller → xử lý logic  
@@ -61,7 +61,7 @@
 - ShoppingCartController → giỏ hàng  
 
 #Trang SHOPPING
-**Views/SanPham/Index.cshtml**
+*Views/SanPham/Index.cshtml*
 
 @model List<Sanpham>
 
@@ -76,7 +76,7 @@
 }
 
 #Trang BLOG
-**Views/Blog/Index.cshtml**
+*Views/Blog/Index.cshtml*
 
 @model List<Blog>
 
@@ -89,7 +89,7 @@
 }
 
 #Trang TRACKING
-**Views/TrackingOrder/Index.cshtml**
+*Views/TrackingOrder/Index.cshtml*
 
 @model Donhang
 
@@ -98,7 +98,7 @@
 <p>Status: @Model.Trangthai</p>
 
 #Trang ACCOUNT
-**Views/Account/Login.cshtml**
+*Views/Account/Login.cshtml*
 
 <form method="post">
     <input name="username" />
@@ -107,13 +107,13 @@
 </form>
 
 #Kết nối MENU trong Layout
-**Views/Shared/_Layout.cshtml**
+*Views/Shared/_Layout.cshtml*
 
 <a href="/SanPham">Shopping</a>
 <a href="/Blog">Blog</a>
 <a href="/TrackingOrder">Tracking</a>
 <a href="/Account/Login">Account</a>
 
-fdsf
+
 
 
