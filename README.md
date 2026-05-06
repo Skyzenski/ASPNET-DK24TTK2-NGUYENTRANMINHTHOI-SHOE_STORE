@@ -198,9 +198,9 @@ Login.cshtml
 ```
 
 Register.cshtml
-
-@model Taikhoan
 ```text
+@model Taikhoan
+
 <h2>Đăng ký</h2>
 
 <form method="post">
@@ -233,7 +233,8 @@ Index.cshtml
 <a href="/TrackingOrder/Create" class="btn btn-success">Thanh toán</a>
 ```
 
-
-
-
+_ViewImports.cshtml
+```text
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+```
 
