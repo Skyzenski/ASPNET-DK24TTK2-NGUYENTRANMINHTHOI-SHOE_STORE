@@ -33,28 +33,42 @@
    - Là chức năng của Template, không rõ cách dùng
    - Không thể xóa chức năng thưởng coin vì làm hỏng code của trang **Check Out** nên giữ nguyên
 
-7. **Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio**
-   - Một trang trong ASP.NET MVC/Core gồm: Controller → Model → View
-   - Controller (xử lý logic); Model (dữ liệu); View (giao diện)
-   - Quan sát Navigation Bar của trang web có 4 trang chính Shopping; Blog; Tracking; Account
-   - Quan sát trong Visual Studio, thư mục MODELS trong Solution Explorer sẽ thấy các file .cs là database của Shopping; Blog; Tracking; Account, cụ thể:
+## 7. Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
 
-     Sanpham.cs → sản phẩm (SHOPPING)
-     Blog.cs → bài viết (BLOG)
-     Donhang.cs / Chitietphieumua.cs → đơn hàng (TRACKING)
-     Taikhoan.cs → tài khoản (ACCOUNT)
-     ShoesDbContext.cs → kết nối database 
+### Cấu trúc cơ bản của một trang ASP.NET MVC/Core
+- Controller → xử lý logic  
+- Model → dữ liệu  
+- View → giao diện  
 
-  - Quan sát trong Visual Studio, thư mục CONTROLLERS trong Solution Explorer sẽ thấy các file hệ thống của Shopping; Blog; Tracking; Account, cụ thể:
+### Navigation Bar gồm 4 trang chính
+- Shopping
+- Blog
+- Tracking
+- Account
 
-      SanPhamController → SHOPPING 
-      BlogController → BLOG 
-      TrackingOrderController → TRACKING 
-      AccountController → ACCOUNT 
-      ShoppingCartController → giỏ hàng 
+---
 
-  - Sau khi đã có MODELS, CONTROLLERS đối với trang SHOPPING tiến hành tạo Index.cshtml trong file VIEWS. Ví dụ về code:
+### Thư mục MODELS trong Solution Explorer
+- Sanpham.cs → sản phẩm (SHOPPING)  
+- Blog.cs → bài viết (BLOG)  
+- Donhang.cs / Chitietphieumua.cs → đơn hàng (TRACKING)  
+- Taikhoan.cs → tài khoản (ACCOUNT)  
+- ShoesDbContext.cs → kết nối database  
 
+---
+
+### Thư mục CONTROLLERS trong Solution Explorer
+- SanPhamController → SHOPPING  
+- BlogController → BLOG  
+- TrackingOrderController → TRACKING  
+- AccountController → ACCOUNT  
+- ShoppingCartController → giỏ hàng  
+
+---
+
+### Trang SHOPPING
+**Views/SanPham/Index.cshtml**
+```csharp
 @model List<Sanpham>
 
 <h2>Shop</h2>
@@ -66,8 +80,9 @@
         <p>@item.Gia</p>
     </div>
 }
-  - Sau khi đã có MODELS, CONTROLLERS đối với trang BLOG tiến hành tạo Views/Blog/Index.cshtml trong file VIEWS. Ví dụ về code:	
-
+### Trang BLOG
+**Views/Blog/Index.cshtml**
+```csharp
 @model List<Blog>
 
 <h2>Blog</h2>
@@ -77,33 +92,31 @@
     <h4>@item.Tieude</h4>
     <p>@item.Noidung</p>
 }
-
-  - Sau khi đã có MODELS, CONTROLLERS đối với trang TRACKING tiến hành tạo Views/TrackingOrder/Index.cshtml trong file VIEWS. Ví dụ về code:
-
+### Trang TRACKING
+**Views/TrackingOrder/Index.cshtml**
+```csharp
 @model Donhang
 
 <h2>Tracking</h2>
 
 <p>Status: @Model.Trangthai</p>
 
-  - Sau khi đã có MODELS, CONTROLLERS đối với trang ACCOUNT tiến hành tạo Views/Account/Login.cshtml trong file VIEWS. Ví dụ về code:
-
+### Trang ACCOUNT
+**Views/Account/Login.cshtml**
+```html
 <form method="post">
     <input name="username" />
     <input name="password" type="password" />
     <button>Login</button>
 </form>
 
-  - Để kết nối mọi thứ với nhau trong MENU cần tạo Views/Shared/_Layout.cshtml trong file VIEWS. Ví dụ về code:
-
+### Kết nối MENU trong Layout
+**Views/Shared/_Layout.cshtml**
+```html
 <a href="/SanPham">Shopping</a>
 <a href="/Blog">Blog</a>
 <a href="/TrackingOrder">Tracking</a>
 <a href="/Account/Login">Account</a>
-
-  
-
-
 
 
 
