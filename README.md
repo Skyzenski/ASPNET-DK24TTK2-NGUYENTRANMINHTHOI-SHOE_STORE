@@ -64,7 +64,7 @@
 - VIEWS/SanPham (SHOPPING)
 Index.cshtml – Danh sách sản phẩm
 
-@model IEnumerable<Sanpham>
+\\@model IEnumerable<Sanpham>
 
 <h2>Danh sách sản phẩm</h2>
 
@@ -82,7 +82,7 @@ Index.cshtml – Danh sách sản phẩm
         </div>
     </div>
 }
-</div>
+</div>\\
 
 
 
