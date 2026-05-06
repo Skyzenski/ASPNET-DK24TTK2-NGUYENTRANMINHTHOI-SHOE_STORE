@@ -62,37 +62,37 @@
 
 #Thư mục VIEWS trong Solution Explorer
 
-# SanPham (SHOPPING)
+#SanPham (SHOPPING)
 - Index.cshtml → hiển thị danh sách sản phẩm  
 - Details.cshtml → hiển thị chi tiết sản phẩm  
 - Create.cshtml → thêm sản phẩm mới  
 - Edit.cshtml → chỉnh sửa sản phẩm  
 - Delete.cshtml → xóa sản phẩm  
 
-# Blog (BLOG)
+#Blog (BLOG)
 - Index.cshtml → danh sách bài viết  
 - Details.cshtml → chi tiết bài viết  
 - Create.cshtml → thêm bài viết  
 - Edit.cshtml → chỉnh sửa bài viết  
 - Delete.cshtml → xóa bài viết  
 
-# TrackingOrder (TRACKING)
+#TrackingOrder (TRACKING)
 - Index.cshtml → danh sách đơn hàng  
 - Details.cshtml → chi tiết đơn hàng  
 - Create.cshtml → tạo đơn hàng  
 - Edit.cshtml → chỉnh sửa đơn hàng  
 - Delete.cshtml → xóa đơn hàng  
 
-# Account (ACCOUNT)
+#Account (ACCOUNT)
 - Login.cshtml → đăng nhập  
 - Register.cshtml → đăng ký  
 - Profile.cshtml → thông tin tài khoản (tùy chọn)  
 
-# ShoppingCart (Giỏ hàng)
+#ShoppingCart (Giỏ hàng)
 - Index.cshtml → hiển thị giỏ hàng  
 - Checkout.cshtml → thanh toán (tùy chọn)  
 
-# Shared (Dùng chung)
+#Shared (Dùng chung)
 - _Layout.cshtml → layout chính (navbar, footer)  
 - _ViewImports.cshtml → khai báo TagHelper  
 - _ViewStart.cshtml → cấu hình layout mặc định 
