@@ -63,8 +63,8 @@
 #Thư mục VIEWS dựa trên cấu trúc cây thưc mục của MODELS và CONTROLLERS cho 
 - VIEWS/SanPham (SHOPPING)
 Index.cshtml – Danh sách sản phẩm
-
-\\@model IEnumerable<Sanpham>
+```text
+@model IEnumerable<Sanpham>
 
 <h2>Danh sách sản phẩm</h2>
 
@@ -83,6 +83,6 @@ Index.cshtml – Danh sách sản phẩm
     </div>
 }
 </div>\\
-
+```
 
 
