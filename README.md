@@ -35,38 +35,32 @@
 
 ## 7. Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
 
-### Cấu trúc cơ bản của một trang ASP.NET MVC/Core
+#Cấu trúc cơ bản của một trang ASP.NET MVC/Core
 - Controller → xử lý logic  
 - Model → dữ liệu  
 - View → giao diện  
 
-### Navigation Bar gồm 4 trang chính
+#Navigation Bar gồm 4 trang chính
 - Shopping
 - Blog
 - Tracking
 - Account
 
----
-
-### Thư mục MODELS trong Solution Explorer
+#Thư mục MODELS trong Solution Explorer
 - Sanpham.cs → sản phẩm (SHOPPING)  
 - Blog.cs → bài viết (BLOG)  
 - Donhang.cs / Chitietphieumua.cs → đơn hàng (TRACKING)  
 - Taikhoan.cs → tài khoản (ACCOUNT)  
 - ShoesDbContext.cs → kết nối database  
 
----
-
-### Thư mục CONTROLLERS trong Solution Explorer
+#Thư mục CONTROLLERS trong Solution Explorer
 - SanPhamController → SHOPPING  
 - BlogController → BLOG  
 - TrackingOrderController → TRACKING  
 - AccountController → ACCOUNT  
 - ShoppingCartController → giỏ hàng  
 
----
-
-### Trang SHOPPING
+#Trang SHOPPING
 **Views/SanPham/Index.cshtml**
 ```csharp
 @model List<Sanpham>
@@ -80,7 +74,8 @@
         <p>@item.Gia</p>
     </div>
 }
-### Trang BLOG
+
+#Trang BLOG
 **Views/Blog/Index.cshtml**
 ```csharp
 @model List<Blog>
@@ -92,7 +87,8 @@
     <h4>@item.Tieude</h4>
     <p>@item.Noidung</p>
 }
-### Trang TRACKING
+
+#Trang TRACKING
 **Views/TrackingOrder/Index.cshtml**
 ```csharp
 @model Donhang
@@ -101,7 +97,7 @@
 
 <p>Status: @Model.Trangthai</p>
 
-### Trang ACCOUNT
+#Trang ACCOUNT
 **Views/Account/Login.cshtml**
 ```html
 <form method="post">
@@ -110,7 +106,7 @@
     <button>Login</button>
 </form>
 
-### Kết nối MENU trong Layout
+#Kết nối MENU trong Layout
 **Views/Shared/_Layout.cshtml**
 ```html
 <a href="/SanPham">Shopping</a>
