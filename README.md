@@ -60,7 +60,29 @@
 - AccountController → ACCOUNT  
 - ShoppingCartController → giỏ hàng  
 
-#Thư mục VIEWS dựa trên cấu trúc cây thưc mục của MODELS và CONTROLLERS
-- 
+#Thư mục VIEWS dựa trên cấu trúc cây thưc mục của MODELS và CONTROLLERS cho 
+- VIEWS/SanPham (SHOPPING)
+Index.cshtml – Danh sách sản phẩm
+
+@model IEnumerable<Sanpham>
+
+<h2>Danh sách sản phẩm</h2>
+
+<div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+        <div class="card">
+            <img src="@item.Hinhanh" class="card-img-top" />
+            <div class="card-body">
+                <h5>@item.Tensp</h5>
+                <p>@item.Gia</p>
+                <a href="/SanPham/Details/@item.Masp" class="btn btn-primary">Xem</a>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
 
 
