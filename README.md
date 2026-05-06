@@ -31,4 +31,4 @@
 
 6. **Chức năng thưởng coin**
    - Là chức năng của Template, không rõ cách dùng
-   - Không thể xóa đi vì làm hỏng code của trang **Check Out** nên giữ nguyên
+   - Không thể xóa chức năng thưởng coin vì làm hỏng code của trang **Check Out** nên giữ nguyên
