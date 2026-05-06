@@ -2,7 +2,7 @@
 - .NET
 
 ## Website có các chức năng
-- Hiển thị sản phẩm giày dép, sales, voucher, checkout
+- Hiển thị sản phẩm giày dép, checkout
 - Đọc Blog, theo dõi đơn hàng, sản phẩm yêu thích
 - Quản lý số lượng giày dép
 - Quản lý đơn hàng và xem báo cáo
@@ -33,7 +33,7 @@
    - Là chức năng của Template, không rõ cách dùng
    - Không thể xóa chức năng thưởng coin vì làm hỏng code của trang **Check Out** nên giữ nguyên
 
-# 7. Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
+##Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
 
 #Cấu trúc cơ bản của một trang ASP.NET MVC/Core
 - Controller → xử lý logic  
