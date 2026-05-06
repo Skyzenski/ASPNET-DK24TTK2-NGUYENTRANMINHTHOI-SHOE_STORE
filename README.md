@@ -33,7 +33,7 @@
    - Là chức năng của Template, không rõ cách dùng
    - Không thể xóa chức năng thưởng coin vì làm hỏng code của trang **Check Out** nên giữ nguyên
 
-##Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
+## Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio
 
 #Cấu trúc cơ bản của một trang ASP.NET MVC/Core
 - Controller → xử lý logic  
