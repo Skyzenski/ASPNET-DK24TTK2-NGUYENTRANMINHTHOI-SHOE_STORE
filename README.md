@@ -127,9 +127,8 @@ Details.cshtml
 - VIEWS/TrackingOrder (TRACKING)
 
 Index.cshtml
-
-@model IEnumerable<Donhang>
 ```text
+@model IEnumerable<Donhang>
 <h2>Đơn hàng của bạn</h2>
 
 <table class="table">
