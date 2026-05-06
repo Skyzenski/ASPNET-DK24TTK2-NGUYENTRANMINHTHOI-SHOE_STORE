@@ -62,7 +62,7 @@
 
 #Trang SHOPPING
 **Views/SanPham/Index.cshtml**
-```csharp
+
 @model List<Sanpham>
 
 <h2>Shop</h2>
@@ -77,7 +77,7 @@
 
 #Trang BLOG
 **Views/Blog/Index.cshtml**
-```csharp
+
 @model List<Blog>
 
 <h2>Blog</h2>
@@ -90,7 +90,7 @@
 
 #Trang TRACKING
 **Views/TrackingOrder/Index.cshtml**
-```csharp
+
 @model Donhang
 
 <h2>Tracking</h2>
@@ -99,7 +99,7 @@
 
 #Trang ACCOUNT
 **Views/Account/Login.cshtml**
-```html
+
 <form method="post">
     <input name="username" />
     <input name="password" type="password" />
@@ -108,7 +108,7 @@
 
 #Kết nối MENU trong Layout
 **Views/Shared/_Layout.cshtml**
-```html
+
 <a href="/SanPham">Shopping</a>
 <a href="/Blog">Blog</a>
 <a href="/TrackingOrder">Tracking</a>
