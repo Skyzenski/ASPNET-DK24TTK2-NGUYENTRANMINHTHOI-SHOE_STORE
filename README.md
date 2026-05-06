@@ -117,6 +117,124 @@ Index.cshtml
 }
 ```
 Details.cshtml
+```text
+@model Blog
+
+<h2>@Model.Tieude</h2>
+
+<p>@Model.Noidung</p>
+```
+- VIEWS/TrackingOrder (TRACKING)
+
+Index.cshtml
+
+@model IEnumerable<Donhang>
+```text
+<h2>Đơn hàng của bạn</h2>
+
+<table class="table">
+    <tr>
+        <th>Mã đơn</th>
+        <th>Ngày</th>
+        <th>Trạng thái</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Madonhang</td>
+        <td>@item.Ngaydat</td>
+        <td>@item.Trangthai</td>
+        <td>
+            <a href="/TrackingOrder/Details/@item.Madonhang">Xem</a>
+        </td>
+    </tr>
+}
+</table>
+```
+
+Details.cshtml
+```text
+@model IEnumerable<Chitietphieumua>
+
+<h2>Chi tiết đơn hàng</h2>
+
+<table class="table">
+    <tr>
+        <th>Sản phẩm</th>
+        <th>Số lượng</th>
+        <th>Giá</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Masp</td>
+        <td>@item.Soluong</td>
+        <td>@item.Gia</td>
+    </tr>
+}
+</table>
+```
+
+- VIEWS/Account (ACCOUNT)
+
+Login.cshtml
+```text
+@model Taikhoan
+
+<h2>Đăng nhập</h2>
+
+<form method="post">
+    <label>Tài khoản</label>
+    <input asp-for="Username" class="form-control" />
+
+    <label>Mật khẩu</label>
+    <input asp-for="Password" type="password" class="form-control" />
+
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+</form>
+
+```
+
+Register.cshtml
+
+@model Taikhoan
+```text
+<h2>Đăng ký</h2>
+
+<form method="post">
+    <input asp-for="Username" placeholder="Username" />
+    <input asp-for="Password" type="password" placeholder="Password" />
+    <input asp-for="Email" placeholder="Email" />
+
+    <button type="submit">Đăng ký</button>
+</form>
+```
+
+- VIEWS/ShoppingCart
+
+Index.cshtml
+```text
+@model List<Sanpham>
+
+<h2>Giỏ hàng</h2>
+
+<table class="table">
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Tensp</td>
+        <td>@item.Gia</td>
+    </tr>
+}
+</table>
+
+<a href="/TrackingOrder/Create" class="btn btn-success">Thanh toán</a>
+```
+
+
 
 
 
