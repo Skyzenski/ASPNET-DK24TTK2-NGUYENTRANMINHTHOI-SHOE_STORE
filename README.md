@@ -84,5 +84,38 @@ Index.cshtml – Danh sách sản phẩm
 }
 </div>\\
 ```
+Details.cshtml – Chi tiết sản phẩm
+```text
+@model Sanpham
+
+<h2>@Model.Tensp</h2>
+
+<img src="@Model.Hinhanh" width="300" />
+<p>Giá: @Model.Gia</p>
+<p>@Model.Mota</p>
+
+<a href="/ShoppingCart/AddToCart/@Model.Masp" class="btn btn-success">
+    Thêm vào giỏ
+</a>
+```
+- VIEWS/Blog (BLOG)
+*Index.cshtml
+```text
+@model IEnumerable<Blog>
+
+<h2>Bài viết</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h3>
+            <a href="/Blog/Details/@item.Id">@item.Tieude</a>
+        </h3>
+        <p>@item.Noidung.Substring(0, 100)...</p>
+    </div>
+}
+```
+*Details.cshtml
+
 
 
