@@ -99,7 +99,8 @@ Details.cshtml – Chi tiết sản phẩm
 </a>
 ```
 - VIEWS/Blog (BLOG)
-*Index.cshtml
+
+Index.cshtml
 ```text
 @model IEnumerable<Blog>
 
@@ -115,7 +116,7 @@ Details.cshtml – Chi tiết sản phẩm
     </div>
 }
 ```
-*Details.cshtml
+Details.cshtml
 
 
 
