@@ -20,15 +20,90 @@
 3. **Chạy và sửa giao diện web**
    - Mở giao diện web, tìm và sửa lỗi, thay đổi nội dung trong khả năng
 
-4. **Sửa lỗi giao diện Blog**
+4. **Sửa lỗi giao diện thuộc front-end cho Blog, Solution Explorer -> Views -> Blog -> Index.cshtml**
    - Trong `Index.cshtml`:
-     - Code lỗi từ template: dòng 72 → 95
-     - Code đã sửa: dòng 96 → 133
+   - Code lỗi từ template: dòng 72 → 95
+   - Code đã sửa: dòng 96 → 133
    - Thử sửa text "Thumbnail" ngay tại Database (`dbo.BLOG [Data]`) nhưng không thành công, web bị sập, chưa rõ cách khắc phục
 
-5. **Chức năng Tracking**
+5. **Test Chức năng Tracking**
    - Hoạt động cơ bản: sau khi điền "Shipping Info" trong phần **Check Out**, hệ thống tự tạo ra Mã ID để nhập vào phần "Order ID" trong **Tracking**
 
 6. **Chức năng thưởng coin**
    - Là chức năng của Template, không rõ cách dùng
    - Không thể xóa chức năng thưởng coin vì làm hỏng code của trang **Check Out** nên giữ nguyên
+
+7. **Dựa vào Template tìm hiểu cách dựng Web trong Visual Studio**
+   - Một trang trong ASP.NET MVC/Core gồm: Controller → Model → View
+   - Controller (xử lý logic); Model (dữ liệu); View (giao diện)
+   - Quan sát Navigation Bar của trang web có 4 trang chính Shopping; Blog; Tracking; Account
+   - Quan sát trong Visual Studio, thư mục MODELS trong Solution Explorer sẽ thấy các file .cs là database của Shopping; Blog; Tracking; Account, cụ thể:
+
+     Sanpham.cs → sản phẩm (SHOPPING)
+     Blog.cs → bài viết (BLOG)
+     Donhang.cs / Chitietphieumua.cs → đơn hàng (TRACKING)
+     Taikhoan.cs → tài khoản (ACCOUNT)
+     ShoesDbContext.cs → kết nối database 
+
+  - Quan sát trong Visual Studio, thư mục CONTROLLERS trong Solution Explorer sẽ thấy các file hệ thống của Shopping; Blog; Tracking; Account, cụ thể:
+
+      SanPhamController → SHOPPING 
+      BlogController → BLOG 
+      TrackingOrderController → TRACKING 
+      AccountController → ACCOUNT 
+      ShoppingCartController → giỏ hàng 
+
+  - Sau khi đã có MODELS, CONTROLLERS đối với trang SHOPPING tiến hành tạo Index.cshtml trong file VIEWS. Ví dụ về code:
+
+@model List<Sanpham>
+
+<h2>Shop</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h4>@item.Tensp</h4>
+        <p>@item.Gia</p>
+    </div>
+}
+  - Sau khi đã có MODELS, CONTROLLERS đối với trang BLOG tiến hành tạo Views/Blog/Index.cshtml trong file VIEWS. Ví dụ về code:	
+
+@model List<Blog>
+
+<h2>Blog</h2>
+
+@foreach (var item in Model)
+{
+    <h4>@item.Tieude</h4>
+    <p>@item.Noidung</p>
+}
+
+  - Sau khi đã có MODELS, CONTROLLERS đối với trang TRACKING tiến hành tạo Views/TrackingOrder/Index.cshtml trong file VIEWS. Ví dụ về code:
+
+@model Donhang
+
+<h2>Tracking</h2>
+
+<p>Status: @Model.Trangthai</p>
+
+  - Sau khi đã có MODELS, CONTROLLERS đối với trang ACCOUNT tiến hành tạo Views/Account/Login.cshtml trong file VIEWS. Ví dụ về code:
+
+<form method="post">
+    <input name="username" />
+    <input name="password" type="password" />
+    <button>Login</button>
+</form>
+
+  - Để kết nối mọi thứ với nhau trong MENU cần tạo Views/Shared/_Layout.cshtml trong file VIEWS. Ví dụ về code:
+
+<a href="/SanPham">Shopping</a>
+<a href="/Blog">Blog</a>
+<a href="/TrackingOrder">Tracking</a>
+<a href="/Account/Login">Account</a>
+
+  
+
+
+
+
+
