@@ -105,6 +105,7 @@
 #MODELS
 
 - File: Sanpham.cs
+
 using System.ComponentModel.DataAnnotations;
 
 public class Sanpham
@@ -121,6 +122,7 @@ public string Hinhanh { get; set; }
 public string Mota { get; set; }
 ```
 - File: Blog.cs
+
 using System.ComponentModel.DataAnnotations;
 
 public class Blog
@@ -137,6 +139,7 @@ public string Hinhanh { get; set; }
 public DateTime Ngaydang { get; set; }
 ```
 - File: Taikhoan.cs
+
 using System.ComponentModel.DataAnnotations;
 
 public class Taikhoan
@@ -153,6 +156,7 @@ public string Email { get; set; }
 public List<Phieumua> Phieumuas { get; set; }
 ```
 - File: Phieumua.cs
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -174,6 +178,7 @@ public Taikhoan Taikhoan { get; set; }
 public List<Chitietphieumua> Chitietphieumuas { get; set; }
 ```
 - File: Chitietphieumua.cs
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
