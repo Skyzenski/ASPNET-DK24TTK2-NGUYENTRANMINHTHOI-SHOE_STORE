@@ -1072,4 +1072,345 @@ public class Sanpham
 
 ## Từ trang All tạo thêm các trang Basketball; Football; Jogging dựa vào template tìm hiểu cách code để có content tương tự.
 
+```text
+@model IEnumerable<Sanpham>
+
+@{
+    ViewData["Title"] = "Basketball";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row align-items-center justify-content-between">
+
+            <div class="col-lg-12 banner-content text-center">
+
+                <h1 class="text-white">
+                    Basketball Shoes
+                </h1>
+
+                <p class="text-white">
+                    Home → Shopping → Basketball
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="category-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- FILTER -->
+
+            <div class="col-lg-3">
+
+                <div class="filter-bar">
+
+                    <h4>Filter Products</h4>
+
+                    <h5>Category</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <a href="/SanPham">
+                                All
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/SanPham/Basketball">
+                                Basketball
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/SanPham/Football">
+                                Football
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/SanPham/Jogging">
+                                Jogging
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUCTS -->
+
+            <div class="col-lg-9">
+
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 mb-5">
+
+                            <div class="product-card">
+
+                                <img src="@item.Hinhanh"
+                                     class="img-fluid product-image" />
+
+                                <div class="product-info">
+
+                                    <h5>@item.Tensp</h5>
+
+                                    <p>@item.Category</p>
+
+                                    <h6>
+                                        @item.Gia.ToString("N0") đ
+                                    </h6>
+
+                                    <a href="/SanPham/Details/@item.Masp"
+                                       class="btn btn-dark">
+
+                                        View Product
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+```
+- Football.cshtml
+
+```text
+@model IEnumerable<Sanpham>
+
+@{
+    ViewData["Title"] = "Football";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+
+                <h1 class="text-white">
+                    Football Shoes
+                </h1>
+
+                <p class="text-white">
+                    Home → Shopping → Football
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="category-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 mb-5">
+
+                    <div class="product-card">
+
+                        <img src="@item.Hinhanh"
+                             class="img-fluid product-image" />
+
+                        <h5>@item.Tensp</h5>
+
+                        <p>@item.Category</p>
+
+                        <h6>
+                            @item.Gia.ToString("N0") đ
+                        </h6>
+
+                        <a href="/SanPham/Details/@item.Masp"
+                           class="btn btn-dark">
+
+                            View Product
+
+                        </a>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+```
+- Jogging.cshtml
+
+```text
+@model IEnumerable<Sanpham>
+
+@{
+    ViewData["Title"] = "Jogging";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+
+                <h1 class="text-white">
+                    Jogging Shoes
+                </h1>
+
+                <p class="text-white">
+                    Home → Shopping → Jogging
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="category-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 mb-5">
+
+                    <div class="product-card">
+
+                        <img src="@item.Hinhanh"
+                             class="img-fluid product-image" />
+
+                        <h5>@item.Tensp</h5>
+
+                        <p>@item.Category</p>
+
+                        <h6>
+                            @item.Gia.ToString("N0") đ
+                        </h6>
+
+                        <a href="/SanPham/Details/@item.Masp"
+                           class="btn btn-dark">
+
+                            View Product
+
+                        </a>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+```
+- THÊM ACTION TRONG SanPhamController.cs
+
+```text
+public IActionResult Basketball()
+{
+    var products = _context.Sanphams
+        .Where(x => x.Category == "Basketball")
+        .ToList();
+
+    return View(products);
+}
+
+public IActionResult Football()
+{
+    var products = _context.Sanphams
+        .Where(x => x.Category == "Football")
+        .ToList();
+
+    return View(products);
+}
+
+public IActionResult Jogging()
+{
+    var products = _context.Sanphams
+        .Where(x => x.Category == "Jogging")
+        .ToList();
+
+    return View(products);
+}
+```
+- CẬP NHẬT DROPDOWN MENU
+
+```text
+<ul class="dropdown-menu">
+
+    <li>
+        <a class="dropdown-item"
+           href="/SanPham">
+            ALL
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item"
+           href="/SanPham/Basketball">
+            BASKETBALL
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item"
+           href="/SanPham/Football">
+            FOOTBALL
+        </a>
+    </li>
+
+    <li>
+        <a class="dropdown-item"
+           href="/SanPham/Jogging">
+            JOGGING
+        </a>
+    </li>
+
+</ul>
+```
 
