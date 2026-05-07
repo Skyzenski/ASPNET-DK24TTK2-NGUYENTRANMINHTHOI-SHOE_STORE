@@ -2171,6 +2171,254 @@ public class Blog
 </section>
 ```
 
+## Dựa vào trang TRACKING của template tìm hiểu cách code để có content tương tự.
+
+```text
+@model Donhang
+
+@{
+    ViewData["Title"] = "Order Tracking";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 text-end">
+
+                <h1 class="text-white">
+                    Order Tracking
+                </h1>
+
+                <p class="text-white">
+                    Home → Tracking Category
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="tracking-area">
+
+    <div class="container">
+
+        <div class="tracking-box">
+
+            <p class="tracking-text">
+
+                To track your order please enter your Order ID
+                in the box below and press the "Track" button.
+                This was given to you on your receipt and in the
+                confirmation email you should have received.
+
+            </p>
+
+            <form asp-action="TrackOrder"
+                  method="post">
+
+                <input type="text"
+                       name="orderId"
+                       class="form-control tracking-input"
+                       placeholder="Order ID" />
+
+                <button type="submit"
+                        class="btn tracking-btn">
+
+                    TRACK ORDER
+
+                </button>
+
+            </form>
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-danger mt-4">
+
+                    @ViewBag.Message
+
+                </div>
+            }
+
+            @if (Model != null)
+            {
+                <div class="tracking-result mt-5">
+
+                    <h3>
+                        Order Information
+                    </h3>
+
+                    <hr />
+
+                    <p>
+                        <strong>Order ID:</strong>
+                        @Model.Madonhang
+                    </p>
+
+                    <p>
+                        <strong>Customer:</strong>
+                        @Model.Tenkhachhang
+                    </p>
+
+                    <p>
+                        <strong>Date:</strong>
+                        @Model.Ngaydathang.ToShortDateString()
+                    </p>
+
+                    <p>
+                        <strong>Total:</strong>
+                        @Model.Tongtien.ToString("N0") đ
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        @Model.Trangthai
+                    </p>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+    .banner-area{
+        background:#f97316;
+        padding:80px 0;
+    }
+
+    .banner-area h1{
+        font-size:45px;
+        font-weight:bold;
+    }
+
+    .tracking-area{
+        background:#f5f5f5;
+        padding:80px 0;
+        min-height:600px;
+    }
+
+    .tracking-box{
+        background:white;
+        padding:40px;
+        border-radius:10px;
+    }
+
+    .tracking-text{
+        margin-bottom:30px;
+        line-height:30px;
+    }
+
+    .tracking-input{
+        height:55px;
+        margin-bottom:25px;
+    }
+
+    .tracking-btn{
+        background:#f97316;
+        color:white;
+        padding:12px 35px;
+        border-radius:5px;
+    }
+
+    .tracking-result{
+        background:#fafafa;
+        padding:30px;
+        border-radius:10px;
+    }
+
+</style>
+```
+- TrackingOrderController.cs
+
+```text
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
+public class TrackingOrderController : Controller
+{
+    private readonly ShoesDbContext _context;
+
+    public TrackingOrderController(ShoesDbContext context)
+    {
+        _context = context;
+    }
+
+    // GET
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    // POST
+
+    [HttpPost]
+    public IActionResult TrackOrder(string orderId)
+    {
+        if (string.IsNullOrEmpty(orderId))
+        {
+            ViewBag.Message = "Please enter Order ID";
+
+            return View("Index");
+        }
+
+        var order = _context.Donhangs
+            .FirstOrDefault(x => x.Madonhang.ToString() == orderId);
+
+        if (order == null)
+        {
+            ViewBag.Message = "Order not found";
+
+            return View("Index");
+        }
+
+        return View("Index", order);
+    }
+}
+```
+- Donhang.cs
+
+```text
+using System.ComponentModel.DataAnnotations;
+
+public class Donhang
+{
+    [Key]
+    public int Madonhang { get; set; }
+
+    public string Tenkhachhang { get; set; }
+
+    public DateTime Ngaydathang { get; set; }
+
+    public decimal Tongtien { get; set; }
+
+    public string Trangthai { get; set; }
+}
+```
+- Thêm menu Tracking trong: Views/Shared/_Layout.cshtml
+
+```text
+<li class="nav-item">
+
+    <a class="nav-link"
+       href="/TrackingOrder">
+
+        TRACKING
+
+    </a>
+
+</li>
+```
 
 
 
