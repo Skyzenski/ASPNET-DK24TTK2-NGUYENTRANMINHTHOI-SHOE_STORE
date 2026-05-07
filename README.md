@@ -1,4 +1,4 @@
-## Giới thiệu 12343455
+## Giới thiệu 
 Học viên: Nguyễn Trần Minh Thời
 Điện thoại: 0963047151
 Email: nguyentranminhthoi93@gmail.com
