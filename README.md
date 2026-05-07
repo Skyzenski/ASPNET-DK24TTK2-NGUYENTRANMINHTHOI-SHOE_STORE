@@ -21,7 +21,7 @@
    - Mở giao diện web, tìm và sửa lỗi, thay đổi nội dung trong khả năng
 
 4. **Sửa lỗi giao diện thuộc front-end cho Blog, Solution Explorer -> Views -> Blog -> Index.cshtml**
-   - Trong `Index.cshtml`:
+   - Trong `Index.cshtml`
    - Code lỗi từ template: dòng 72 → 95
    - Code đã sửa: dòng 96 → 133
    - Thử sửa text "Thumbnail" ngay tại Database (`dbo.BLOG [Data]`) nhưng không thành công, web bị sập, chưa rõ cách khắc phục
@@ -97,181 +97,95 @@
 - _ViewImports.cshtml → khai báo TagHelper  
 - _ViewStart.cshtml → cấu hình layout mặc định 
 
-#Thư mục VIEWS dựa trên cấu trúc cây thưc mục của MODELS và CONTROLLERS cho 
+## Dựa vào cấu trúc cây thư mục của Template viết code cho từng mục trong MODELS; CONTROLLERS; VIEWS tạo ra các mục Shopping; Blog; Tracking; Account
+
 - VIEWS/SanPham (SHOPPING)
-Index.cshtml – Danh sách sản phẩm
-```text
-@model IEnumerable<Sanpham>
 
-<h2>Danh sách sản phẩm</h2>
+#MODELS
 
-<div class="row">
-@foreach (var item in Model)
+- File: Sanpham.cs
+using System.ComponentModel.DataAnnotations;
+
+public class Sanpham
 {
-    <div class="col-md-3">
-        <div class="card">
-            <img src="@item.Hinhanh" class="card-img-top" />
-            <div class="card-body">
-                <h5>@item.Tensp</h5>
-                <p>@item.Gia</p>
-                <a href="/SanPham/Details/@item.Masp" class="btn btn-primary">Xem</a>
-            </div>
-        </div>
-    </div>
-}
-</div>\\
-```
-Details.cshtml – Chi tiết sản phẩm
+[Key]
+public int Masp { get; set; }
 ```text
-@model Sanpham
+public string Tensp { get; set; }
 
-<h2>@Model.Tensp</h2>
+public decimal Gia { get; set; }
 
-<img src="@Model.Hinhanh" width="300" />
-<p>Giá: @Model.Gia</p>
-<p>@Model.Mota</p>
+public string Hinhanh { get; set; }
 
-<a href="/ShoppingCart/AddToCart/@Model.Masp" class="btn btn-success">
-    Thêm vào giỏ
-</a>
+public string Mota { get; set; }
 ```
-- VIEWS/Blog (BLOG)
+- File: Blog.cs
+using System.ComponentModel.DataAnnotations;
 
-Index.cshtml
-```text
-@model IEnumerable<Blog>
-
-<h2>Bài viết</h2>
-
-@foreach (var item in Model)
+public class Blog
 {
-    <div>
-        <h3>
-            <a href="/Blog/Details/@item.Id">@item.Tieude</a>
-        </h3>
-        <p>@item.Noidung.Substring(0, 100)...</p>
-    </div>
-}
-```
-Details.cshtml
+[Key]
+public int Id { get; set; }
 ```text
-@model Blog
+public string Tieude { get; set; }
 
-<h2>@Model.Tieude</h2>
+public string Noidung { get; set; }
 
-<p>@Model.Noidung</p>
-```
-- VIEWS/TrackingOrder (TRACKING)
+public string Hinhanh { get; set; }
 
-Index.cshtml
-```text
-@model IEnumerable<Donhang>
-<h2>Đơn hàng của bạn</h2>
-
-<table class="table">
-    <tr>
-        <th>Mã đơn</th>
-        <th>Ngày</th>
-        <th>Trạng thái</th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model)
-{
-    <tr>
-        <td>@item.Madonhang</td>
-        <td>@item.Ngaydat</td>
-        <td>@item.Trangthai</td>
-        <td>
-            <a href="/TrackingOrder/Details/@item.Madonhang">Xem</a>
-        </td>
-    </tr>
-}
-</table>
+public DateTime Ngaydang { get; set; }
 ```
 
-Details.cshtml
-```text
-@model IEnumerable<Chitietphieumua>
 
-<h2>Chi tiết đơn hàng</h2>
 
-<table class="table">
-    <tr>
-        <th>Sản phẩm</th>
-        <th>Số lượng</th>
-        <th>Giá</th>
-    </tr>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>@item.Masp</td>
-        <td>@item.Soluong</td>
-        <td>@item.Gia</td>
-    </tr>
-}
-</table>
-```
 
-- VIEWS/Account (ACCOUNT)
 
-Login.cshtml
-```text
-@model Taikhoan
 
-<h2>Đăng nhập</h2>
 
-<form method="post">
-    <label>Tài khoản</label>
-    <input asp-for="Username" class="form-control" />
 
-    <label>Mật khẩu</label>
-    <input asp-for="Password" type="password" class="form-control" />
 
-    <button type="submit" class="btn btn-primary">Đăng nhập</button>
-</form>
 
-```
 
-Register.cshtml
-```text
-@model Taikhoan
 
-<h2>Đăng ký</h2>
 
-<form method="post">
-    <input asp-for="Username" placeholder="Username" />
-    <input asp-for="Password" type="password" placeholder="Password" />
-    <input asp-for="Email" placeholder="Email" />
 
-    <button type="submit">Đăng ký</button>
-</form>
-```
 
-- VIEWS/ShoppingCart
 
-Index.cshtml
-```text
-@model List<Sanpham>
 
-<h2>Giỏ hàng</h2>
 
-<table class="table">
-@foreach (var item in Model)
-{
-    <tr>
-        <td>@item.Tensp</td>
-        <td>@item.Gia</td>
-    </tr>
-}
-</table>
 
-<a href="/TrackingOrder/Create" class="btn btn-success">Thanh toán</a>
-```
 
-_ViewImports.cshtml
-```text
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
