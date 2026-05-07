@@ -3189,4 +3189,399 @@ public IActionResult Index()
 
 ```text 
 wwwroot/images/duramo.jpg
+``` 
+
+## Dựa vào trang Checkout của template và Database đã nhập trước đó, tìm hiểu cách code để có content tương tự.
+
+- Cập nhật Model Donhang.cs, nếu model chưa đủ field, bổ sung:
+
 ```text 
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class Donhang
+{
+    [Key]
+    public int Madonhang { get; set; }
+
+    public string Tenkhachhang { get; set; }
+
+    public string Email { get; set; }
+
+    public string Sodienthoai { get; set; }
+
+    public string Diachi { get; set; }
+
+    public string Tinh { get; set; }
+
+    public string Huyen { get; set; }
+
+    public string Xa { get; set; }
+
+    public string Ghichu { get; set; }
+
+    public string Phuongthucthanhtoan { get; set; }
+
+    public decimal Tongtien { get; set; }
+
+    public string Trangthai { get; set; }
+
+    public DateTime Ngaydathang { get; set; }
+}
+```
+- Cập nhật ShoesDbContext.cs, thêm
+
+```text
+public DbSet<Donhang> Donhangs { get; set; }
+```
+- Tạo ViewModel cho Checkout
+
+```text
+using System.ComponentModel.DataAnnotations;
+
+public class CheckoutViewModel
+{
+    public string Tenkhachhang { get; set; }
+
+    public string Email { get; set; }
+
+    public string Sodienthoai { get; set; }
+
+    public string Diachi { get; set; }
+
+    public string Tinh { get; set; }
+
+    public string Huyen { get; set; }
+
+    public string Xa { get; set; }
+
+    public string Ghichu { get; set; }
+
+    public string Phuongthucthanhtoan { get; set; }
+}
+```
+- Cập nhật ShoppingCartController.cs, thêm action Checkout:
+
+```text
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class ShoppingCartController : Controller
+{
+    private readonly ShoesDbContext _context;
+
+    public ShoppingCartController(ShoesDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Checkout()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Checkout(CheckoutViewModel model)
+    {
+        var cart = GetCart();
+
+        if(cart.Count == 0)
+        {
+            return RedirectToAction("Index");
+        }
+
+        decimal tongTien = cart.Sum(x => x.Gia);
+
+        Donhang order = new Donhang();
+
+        order.Tenkhachhang = model.Tenkhachhang;
+        order.Email = model.Email;
+        order.Sodienthoai = model.Sodienthoai;
+        order.Diachi = model.Diachi;
+        order.Tinh = model.Tinh;
+        order.Huyen = model.Huyen;
+        order.Xa = model.Xa;
+        order.Ghichu = model.Ghichu;
+
+        order.Phuongthucthanhtoan = model.Phuongthucthanhtoan;
+        order.Tongtien = tongTien;
+
+        order.Trangthai = "Pending";
+
+        order.Ngaydathang = DateTime.Now;
+
+        _context.Donhangs.Add(order);
+
+        _context.SaveChanges();
+
+        foreach(var item in cart)
+        {
+            Chitietphieumua detail = new Chitietphieumua();
+
+            detail.Maphieumua = order.Madonhang;
+            detail.Masp = item.Masp;
+            detail.Soluong = 1;
+            detail.Gia = item.Gia;
+
+            _context.Chitietphieumuas.Add(detail);
+        }
+
+        _context.SaveChanges();
+
+        HttpContext.Session.Remove("cart");
+
+        return RedirectToAction(
+            "Index",
+            "TrackingOrder"
+        );
+    }
+
+    private List<Sanpham> GetCart()
+    {
+        var data = HttpContext.Session.GetString("cart");
+
+        if(data == null)
+        {
+            return new List<Sanpham>();
+        }
+
+        return JsonConvert.DeserializeObject<List<Sanpham>>(data);
+    }
+}
+```
+
+- Tạo View Views/ShoppingCart/Checkout.cshtml
+
+```text 
+@model CheckoutViewModel
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="checkout-page">
+
+    <!-- Banner -->
+
+    <div class="checkout-banner">
+
+        <h1>Checkout</h1>
+
+        <p>Home → Checkout</p>
+
+    </div>
+
+    <!-- Content -->
+
+    <div class="checkout-container">
+
+        <!-- LEFT -->
+
+        <div class="checkout-left">
+
+            <form method="post">
+
+                <h2>Shipping Info</h2>
+
+                <input asp-for="Tenkhachhang"
+                       placeholder="Customer name" />
+
+                <input asp-for="Sodienthoai"
+                       placeholder="Phone number" />
+
+                <input asp-for="Email"
+                       placeholder="Email" />
+
+                <input asp-for="Diachi"
+                       placeholder="Address" />
+
+                <div class="address-row">
+
+                    <input asp-for="Tinh"
+                           placeholder="Province" />
+
+                    <input asp-for="Huyen"
+                           placeholder="District" />
+
+                    <input asp-for="Xa"
+                           placeholder="Ward" />
+
+                </div>
+
+                <input asp-for="Ghichu"
+                       placeholder="Note" />
+
+                <h2>Method Purchase</h2>
+
+                <div class="payment-box">
+
+                    <label>
+                        <input type="radio"
+                               asp-for="Phuongthucthanhtoan"
+                               value="COD" />
+
+                        COD
+                    </label>
+
+                </div>
+
+                <div class="payment-box">
+
+                    <label>
+                        <input type="radio"
+                               asp-for="Phuongthucthanhtoan"
+                               value="PayPal" />
+
+                        PayPal
+                    </label>
+
+                </div>
+
+                <button class="checkout-btn">
+
+                    CONFIRM CHECKOUT
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="checkout-right">
+
+            <h3>Your Order</h3>
+
+            @{
+                var cartData = HttpContextAccessor
+                    .HttpContext
+                    .Session
+                    .GetString("cart");
+
+                List<Sanpham> cart = new List<Sanpham>();
+
+                if(cartData != null)
+                {
+                    cart = Newtonsoft.Json.JsonConvert
+                        .DeserializeObject<List<Sanpham>>(cartData);
+                }
+
+                decimal total = cart.Sum(x => x.Gia);
+            }
+
+            @foreach(var item in cart)
+            {
+                <div class="order-item">
+
+                    <img src="@item.Hinhanh" />
+
+                    <div>
+
+                        <p>@item.Tensp</p>
+
+                        <p>@item.Gia.ToString("N0") đ</p>
+
+                    </div>
+
+                </div>
+            }
+
+            <hr />
+
+            <h2>
+                Total:
+                @total.ToString("N0") đ
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+```
+- CSS giao diện giống Template, thêm vào wwwroot/css/style.css
+
+```text 
+.checkout-page{
+    background:#f5f5f5;
+    min-height:100vh;
+}
+
+.checkout-banner{
+    height:170px;
+    background:linear-gradient(to right,#ff6a00,#f9b233);
+    color:white;
+    padding:50px;
+    text-align:right;
+}
+
+.checkout-container{
+    width:90%;
+    margin:50px auto;
+
+    display:flex;
+    gap:30px;
+}
+
+.checkout-left{
+    width:65%;
+    background:white;
+    padding:30px;
+}
+
+.checkout-right{
+    width:35%;
+    background:#edf1f7;
+    padding:30px;
+}
+
+.checkout-left input{
+    width:100%;
+    height:45px;
+    margin-bottom:20px;
+    padding-left:15px;
+}
+
+.address-row{
+    display:flex;
+    gap:15px;
+}
+
+.payment-box{
+    border:1px solid #ddd;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+.checkout-btn{
+    width:100%;
+    height:50px;
+    border:none;
+
+    background:linear-gradient(
+        to right,
+        #ff6a00,
+        #f9b233
+    );
+
+    color:white;
+    font-weight:bold;
+}
+
+.order-item{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.order-item img{
+    width:60px;
+}
+```
+
