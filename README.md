@@ -2832,9 +2832,361 @@ public string Gioitinh { get; set; }
 public DateTime? Ngaysinh { get; set; }
 ```
 
+## Dựa vào trang Shopping Cart của template và Database đã nhập trước đó, tìm hiểu cách code để có content tương tự.
 
+- Thêm mới Views/ShoppingCart/Index.cshtml
 
+```text
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
 
+<div class="cart-page">
 
+    <!-- Banner -->
 
+    <div class="cart-banner">
 
+        <div class="cart-banner-content">
+
+            <h1>Shopping Cart</h1>
+
+            <p>
+                Home →
+                <span>Cart</span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Cart Content -->
+
+    <div class="cart-container">
+
+        <!-- Header -->
+
+        <div class="cart-header">
+
+            <div class="cart-product">
+                Products
+            </div>
+
+            <div class="cart-quantity">
+                Quantity
+            </div>
+
+            <div class="cart-total">
+                Total cost
+            </div>
+
+        </div>
+
+        <!-- Product -->
+
+        <div class="cart-item">
+
+            <!-- Image -->
+
+            <div class="cart-product-info">
+
+                <img src="/images/duramo.jpg" />
+
+                <div>
+
+                    <h3>Shoes DURAMO SL 2.0</h3>
+
+                    <p>Color: Ghost White</p>
+
+                    <p>Size: 38</p>
+
+                </div>
+
+            </div>
+
+            <!-- Quantity -->
+
+            <div class="cart-quantity-box">
+
+                <button>-</button>
+
+                <input type="text"
+                       value="1" />
+
+                <button>+</button>
+
+            </div>
+
+            <!-- Price -->
+
+            <div class="cart-price">
+
+                1,900,000₫
+
+            </div>
+
+            <!-- Delete -->
+
+            <div class="cart-delete">
+
+                <button>
+                    🗑
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Total -->
+
+        <div class="cart-bill">
+
+            <h3>Total Bill</h3>
+
+            <span>1,900,000₫</span>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="cart-buttons">
+
+            <a asp-controller="SanPham"
+               asp-action="SanPhamTheoLoai"
+               class="continue-btn">
+
+                CONTINUE SHOPPING
+
+            </a>
+
+            <a asp-controller="ShoppingCart"
+               asp-action="Checkout"
+               class="checkout-btn">
+
+                CHECKOUT
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+- Cập nhật wwwroot/css/style.css, thêm cuối file:
+
+```text 
+/* SHOPPING CART */
+
+.cart-page{
+    background-color: #f5f5f5;
+
+    min-height: 100vh;
+}
+
+/* Banner */
+
+.cart-banner{
+    height: 170px;
+
+    background: linear-gradient(to right,#ff6a00,#f9b233);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: 120px;
+
+    color: white;
+}
+
+.cart-banner-content h1{
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+/* Container */
+
+.cart-container{
+    width: 90%;
+
+    margin: 60px auto;
+
+    background-color: white;
+
+    padding: 40px;
+}
+
+/* Header */
+
+.cart-header{
+    display: flex;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #ddd;
+
+    font-weight: bold;
+}
+
+.cart-product{
+    width: 55%;
+}
+
+.cart-quantity{
+    width: 20%;
+}
+
+.cart-total{
+    width: 20%;
+}
+
+/* Item */
+
+.cart-item{
+    display: flex;
+
+    align-items: center;
+
+    padding: 30px 0;
+
+    border-bottom: 1px solid #ddd;
+}
+
+/* Product */
+
+.cart-product-info{
+    width: 55%;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.cart-product-info img{
+    width: 120px;
+
+    margin-right: 25px;
+}
+
+.cart-product-info h3{
+    margin-bottom: 10px;
+}
+
+/* Quantity */
+
+.cart-quantity-box{
+    width: 20%;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.cart-quantity-box button{
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    background-color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.cart-quantity-box input{
+    width: 45px;
+    height: 35px;
+
+    text-align: center;
+
+    border: 1px solid #ddd;
+}
+
+/* Price */
+
+.cart-price{
+    width: 20%;
+
+    font-weight: bold;
+}
+
+/* Delete */
+
+.cart-delete button{
+    background-color: crimson;
+
+    color: white;
+
+    border: none;
+
+    width: 35px;
+    height: 35px;
+
+    cursor: pointer;
+}
+
+/* Bill */
+
+.cart-bill{
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 60px;
+
+    padding: 30px 0;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+/* Buttons */
+
+.cart-buttons{
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 20px;
+}
+
+.continue-btn{
+    background-color: #e9ecef;
+
+    padding: 15px 30px;
+
+    text-decoration: none;
+
+    color: black;
+}
+
+.checkout-btn{
+    background: linear-gradient(to right,#ff6a00,#f9b233);
+
+    padding: 15px 30px;
+
+    text-decoration: none;
+
+    color: white;
+}
+``` 
+
+- Cập nhật Controllers/ShoppingCartController.cs, thêm action:
+
+```text 
+public IActionResult Index()
+{
+    return View();
+}
+```
+- Thêm ảnh sản phẩm mẫu, dùng ảnh đôi giày (tùy mẫu)
+
+```text 
+wwwroot/images/duramo.jpg
+```text 
