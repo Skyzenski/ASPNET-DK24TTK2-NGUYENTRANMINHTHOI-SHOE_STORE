@@ -3584,4 +3584,557 @@ public class ShoppingCartController : Controller
     width:60px;
 }
 ```
+## Dựa vào trang Header/Footer của template và Database đã nhập trước đó, tìm hiểu cách code để có content tương tự.
+
+- Views/Shared/_Layout.cshtml, thay phần header/footer bằng:
+
+```text
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1"/>
+
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet"
+          href="~/css/style.css"/>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="main-header">
+
+        <div class="header-container">
+
+            <!-- LOGO -->
+
+            <div class="header-logo">
+
+                <a asp-controller="SanPham"
+                   asp-action="Index">
+
+                    <img src="~/images/logo.png"/>
+
+                </a>
+
+            </div>
+
+            <!-- MENU -->
+
+            <nav class="main-menu">
+
+                <ul>
+
+                    <!-- SHOPPING -->
+
+                    <li class="dropdown-menu-custom">
+
+                        <a href="#">
+                            SHOPPING
+                        </a>
+
+                        <ul class="submenu">
+
+                            <li>
+                                <a href="/SanPham">
+                                    ALL
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/SanPham/Basketball">
+                                    BASKETBALL
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/SanPham/Football">
+                                    FOOTBALL
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/SanPham/Jogging">
+                                    JOGGING
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <!-- BLOG -->
+
+                    <li>
+
+                        <a href="/Blog">
+                            BLOG
+                        </a>
+
+                    </li>
+
+                    <!-- TRACKING -->
+
+                    <li>
+
+                        <a href="/TrackingOrder">
+                            TRACKING
+                        </a>
+
+                    </li>
+
+                    <!-- ACCOUNT -->
+
+                    <li class="dropdown-menu-custom">
+
+                        <a href="#">
+                            ACCOUNT
+                        </a>
+
+                        <ul class="submenu">
+
+                            <li>
+
+                                <a href="/Account/Login">
+                                    LOGIN
+                                </a>
+
+                            </li>
+
+                            <li>
+
+                                <a href="/Account/Register">
+                                    REGISTER
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <!-- ICON -->
+
+            <div class="header-icons">
+
+                <a href="/ShoppingCart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- BODY -->
+
+    @RenderBody()
+
+
+    <!-- FOOTER -->
+
+    <footer class="main-footer">
+
+        <div class="footer-container">
+
+            <!-- ABOUT -->
+
+            <div class="footer-box">
+
+                <h4>
+                    About Us
+                </h4>
+
+                <p>
+
+                    Shoes Store project based on ASP.NET MVC
+                    connected with SQL Server.
+
+                </p>
+
+            </div>
+
+
+            <!-- NEWSLETTER -->
+
+            <div class="footer-box">
+
+                <h4>
+                    Newsletter
+                </h4>
+
+                <p>
+
+                    Stay update with our latest.
+
+                </p>
+
+                <div class="newsletter-box">
+
+                    <input type="text"
+                           placeholder="Enter Email"/>
+
+                    <button>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- INSTAGRAM -->
+
+            <div class="footer-box">
+
+                <h4>
+                    Instagram Feed
+                </h4>
+
+                <div class="instagram-grid">
+
+                    <img src="~/images/footer/i1.jpg"/>
+                    <img src="~/images/footer/i2.jpg"/>
+                    <img src="~/images/footer/i3.jpg"/>
+                    <img src="~/images/footer/i4.jpg"/>
+
+                    <img src="~/images/footer/i5.jpg"/>
+                    <img src="~/images/footer/i6.jpg"/>
+                    <img src="~/images/footer/i7.jpg"/>
+                    <img src="~/images/footer/i8.jpg"/>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOLLOW -->
+
+            <div class="footer-box">
+
+                <h4>
+                    Follow Us
+                </h4>
+
+                <p>
+                    Let us be social
+                </p>
+
+                <div class="social-icons">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+                    <i class="fa-brands fa-twitter"></i>
+
+                    <i class="fa-brands fa-dribbble"></i>
+
+                    <i class="fa-brands fa-behance"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            Copyright © @DateTime.Now.Year
+            All rights reserved
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+
+```
+- wwwroot/css/style.css, thêm cuối file:
+
+```text 
+/* HEADER */
+
+body{
+    margin:0;
+    font-family: Arial;
+}
+
+.main-header{
+    position:absolute;
+
+    top:30px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:90%;
+
+    background:white;
+
+    z-index:999;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.header-container{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px 40px;
+}
+
+/* LOGO */
+
+.header-logo img{
+    height:35px;
+}
+
+/* MENU */
+
+.main-menu ul{
+    display:flex;
+
+    list-style:none;
+
+    gap:40px;
+
+    margin:0;
+
+    padding:0;
+}
+
+.main-menu a{
+    text-decoration:none;
+
+    color:black;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+/* DROPDOWN */
+
+.dropdown-menu-custom{
+    position:relative;
+}
+
+.submenu{
+    position:absolute;
+
+    top:100%;
+
+    left:0;
+
+    background:white;
+
+    width:180px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:0.3s;
+
+    display:block !important;
+
+    padding:10px 0 !important;
+}
+
+.submenu li{
+    list-style:none;
+
+    padding:12px 20px;
+}
+
+.dropdown-menu-custom:hover .submenu{
+    opacity:1;
+
+    visibility:visible;
+}
+
+/* ICON */
+
+.header-icons{
+    display:flex;
+
+    gap:25px;
+}
+
+.header-icons a{
+    color:black;
+}
+
+
+/* FOOTER */
+
+.main-footer{
+    background:#111;
+
+    color:white;
+
+    padding-top:80px;
+
+    padding-bottom:30px;
+}
+
+.footer-container{
+    width:90%;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr 1fr 1fr;
+
+    gap:40px;
+}
+
+.footer-box h4{
+    margin-bottom:25px;
+}
+
+.footer-box p{
+    color:#999;
+
+    line-height:28px;
+}
+
+/* NEWSLETTER */
+
+.newsletter-box{
+    display:flex;
+
+    margin-top:20px;
+}
+
+.newsletter-box input{
+    flex:1;
+
+    height:45px;
+
+    border:none;
+
+    padding-left:15px;
+}
+
+.newsletter-box button{
+    width:50px;
+
+    border:none;
+
+    background:#ff6a00;
+
+    color:white;
+}
+
+/* INSTAGRAM */
+
+.instagram-grid{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:8px;
+}
+
+.instagram-grid img{
+    width:100%;
+
+    height:60px;
+
+    object-fit:cover;
+}
+
+/* SOCIAL */
+
+.social-icons{
+    display:flex;
+
+    gap:20px;
+
+    margin-top:20px;
+
+    color:#999;
+}
+
+/* COPYRIGHT */
+
+.copyright{
+    text-align:center;
+
+    margin-top:60px;
+
+    color:#999;
+}
+```
+- Cây thư mục ảnh đúng với project, trong wwwroot/images/:
+
+images
+
+│
+
+├── logo.png
+
+│
+
+└── footer
+
+    ├── i1.jpg
+
+    ├── i2.jpg
+
+    ├── i3.jpg
+
+    ├── i4.jpg
+
+    ├── i5.jpg
+
+    ├── i6.jpg
+
+    ├── i7.jpg
+
+    └── i8.jpg
+
+
+
+
+
 
