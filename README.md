@@ -1,3 +1,8 @@
+## Giới thiệu 12343455
+Học viên: Nguyễn Trần Minh Thời
+Điện thoại: 0963047151
+Email: nguyentranminhthoi93@gmail.com
+
 ## Prerequisites
 - .NET
 
@@ -4133,7 +4138,7 @@ images
 
     └── i8.jpg
 
-
+## Thử nghiệm tối ưu code trong Template (nếu đủ thời gian)
 
 
 
