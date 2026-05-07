@@ -582,7 +582,16 @@ private void SaveCart(List<Sanpham> cart)
 ```text
 <form method="post"> <input name="username" /> <input name="password" type="password" /> <button>Login</button> </form>
 ```
+- Cấu trúc tổng thể:
 
+Views
+│
+├── SanPham
+├── Blog
+├── TrackingOrder
+├── Account
+├── ShoppingCart
+└── Shared
 
 
 
