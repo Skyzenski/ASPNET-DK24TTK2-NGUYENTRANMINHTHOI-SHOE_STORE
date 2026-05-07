@@ -753,6 +753,323 @@ Hiển thị sản phẩm theo category:
 /SanPham?category=Jogging
 → chỉ hiện Jogging
 
+## Trong SHOPPING -> All của template hiển thị trang All, tìm hiểu cách code để có content trong trang All tương tự
 
+```text
+@model IEnumerable<Sanpham>
+
+@{
+    ViewData["Title"] = "Shop Category";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row align-items-center justify-content-between">
+
+            <div class="col-lg-12 banner-content text-center">
+
+                <h1 class="text-white">
+                    Shop Category page
+                </h1>
+
+                <p class="text-white">
+                    Home → Shopping → All
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="category-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LEFT FILTER -->
+
+            <div class="col-lg-3">
+
+                <div class="filter-bar">
+
+                    <h4>Filter Products</h4>
+
+                    <hr />
+
+                    <h5>COLORS</h5>
+
+                    <ul class="list-unstyled">
+
+                        <li>Black</li>
+                        <li>Blue</li>
+                        <li>SaddleBrown</li>
+                        <li>GhostWhite</li>
+                        <li>Red</li>
+                        <li>Pink</li>
+                        <li>Orange</li>
+                        <li>Yellow</li>
+
+                    </ul>
+
+                    <hr />
+
+                    <h5>PRICE</h5>
+
+                    <p>Price from: 0đ - 10.000.000đ</p>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT PRODUCTS -->
+
+            <div class="col-lg-9">
+
+                <!-- SORT BAR -->
+
+                <div class="sort-bar mb-4">
+
+                    <form method="get">
+
+                        <select name="sortPrice"
+                                class="form-select w-25"
+                                onchange="this.form.submit()">
+
+                            <option value="">
+                                Sort Price
+                            </option>
+
+                            <option value="asc">
+                                Low To High
+                            </option>
+
+                            <option value="desc">
+                                High To Low
+                            </option>
+
+                        </select>
+
+                    </form>
+
+                </div>
+
+                <!-- PRODUCT LIST -->
+
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 mb-5">
+
+                            <div class="product-card">
+
+                                <img src="@item.Hinhanh"
+                                     class="img-fluid product-image" />
+
+                                <div class="product-info">
+
+                                    <h5>
+                                        @item.Tensp
+                                    </h5>
+
+                                    <p>
+                                        @item.Category
+                                    </p>
+
+                                    <h6>
+                                        @item.Gia.ToString("N0") đ
+                                    </h6>
+
+                                    <a href="/SanPham/Details/@item.Masp"
+                                       class="btn btn-dark mt-2">
+
+                                        View Product
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+    .banner-area{
+        background:#f97316;
+        padding:70px 0;
+    }
+
+    .banner-content h1{
+        font-size:45px;
+        font-weight:bold;
+    }
+
+    .category-area{
+        padding:60px 0;
+        background:#f5f5f5;
+    }
+
+    .filter-bar{
+        background:white;
+        padding:25px;
+        border-radius:10px;
+    }
+
+    .filter-bar h4{
+        background:#7f8db0;
+        color:white;
+        padding:15px;
+        margin-bottom:25px;
+    }
+
+    .sort-bar{
+        background:#7f8db0;
+        padding:20px;
+        border-radius:10px;
+    }
+
+    .product-card{
+        background:white;
+        padding:20px;
+        border-radius:10px;
+        transition:0.3s;
+    }
+
+    .product-card:hover{
+        transform:translateY(-5px);
+    }
+
+    .product-image{
+        width:100%;
+        height:250px;
+        object-fit:cover;
+    }
+
+    .product-info{
+        margin-top:20px;
+    }
+
+</style>
+```
+- Controller tương ứng:
+
+```text
+public IActionResult Index(string category, string sortPrice)
+{
+    var products = _context.Sanphams.AsQueryable();
+
+    // FILTER CATEGORY
+
+    if (!string.IsNullOrEmpty(category))
+    {
+        products = products.Where(x => x.Category == category);
+    }
+
+    // SORT PRICE
+
+    if (sortPrice == "asc")
+    {
+        products = products.OrderBy(x => x.Gia);
+    }
+    else if (sortPrice == "desc")
+    {
+        products = products.OrderByDescending(x => x.Gia);
+    }
+
+    return View(products.ToList());
+}
+```
+- Model Sanpham.cs:
+```text
+public class Sanpham
+{
+    public int Masp { get; set; }
+
+    public string Tensp { get; set; }
+
+    public decimal Gia { get; set; }
+
+    public string Hinhanh { get; set; }
+
+    public string Mota { get; set; }
+
+    public string Category { get; set; }
+}
+```
+- Dropdown menu trong _Layout.cshtml:
+
+```text
+<li class="nav-item dropdown">
+
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       data-bs-toggle="dropdown">
+
+        SHOPPING
+
+    </a>
+
+    <ul class="dropdown-menu">
+
+        <li>
+            <a class="dropdown-item"
+               href="/SanPham">
+
+                ALL
+
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item"
+               href="/SanPham?category=Basketball">
+
+                BASKETBALL
+
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item"
+               href="/SanPham?category=Football">
+
+                FOOTBALL
+
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item"
+               href="/SanPham?category=Jogging">
+
+                JOGGING
+
+            </a>
+        </li>
+
+    </ul>
+
+</li>
+```
+
+## Từ trang All tạo thêm các trang Basketball; Football; Jogging dựa vào template tìm hiểu cách code để có content tương tự.
 
 
