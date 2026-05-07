@@ -596,10 +596,11 @@ Views
 ## Trong SHOPPING của template sổ ra 4 mục All, Basketball, Football, Jogging, tìm hiểu cách code để có hiệu ứng tương tự
 
 - Cập nhật: MODEL -> Sanpham.cs
-```text
-using System.ComponentModel.DataAnnotations;
 
+using System.ComponentModel.DataAnnotations;
 public class Sanpham
+
+```text
 {
     [Key]
     public int Masp { get; set; }
@@ -616,11 +617,12 @@ public class Sanpham
 }
 ```
 - Cập nhật: SanPhamController.cs
-```text
+
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-
 public class SanPhamController : Controller
+
+```text
 {
     private readonly ShoesDbContext _context;
 
@@ -657,11 +659,12 @@ public class SanPhamController : Controller
 - Cập nhật: VIEWS/Shared/_Layout.cshtml
 
 Thêm dropdown Shopping:
-```text
+
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-
 public class SanPhamController : Controller
+
+```text
 {
     private readonly ShoesDbContext _context;
 
@@ -740,10 +743,13 @@ Hiển thị sản phẩm theo category:
 
 /SanPham
 → hiện ALL
+
 /SanPham?category=Basketball
 → chỉ hiện Basketball
+
 /SanPham?category=Football
 → chỉ hiện Football
+
 /SanPham?category=Jogging
 → chỉ hiện Jogging
 
