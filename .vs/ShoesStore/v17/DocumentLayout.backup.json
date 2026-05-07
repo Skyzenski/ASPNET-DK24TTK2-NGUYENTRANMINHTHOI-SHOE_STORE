@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\CHUY\u00CAN \u0110\u1EC0 ASP TH\u1EDCI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\",
+  "WorkspaceRootPath": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8C58419E-0CD0-49A9-95E1-5F31C3B32B41}|ShoesStore\\ShoesStore.csproj|d:\\chuy\u00EAn \u0111\u1EC1 asp th\u1EDDi\\aspnet-dk24ttk2-nguyentranminhthoi-shoe_store\\shoesstore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{8C58419E-0CD0-49A9-95E1-5F31C3B32B41}|ShoesStore\\ShoesStore.csproj|d:\\aspnet-dk24ttk2-nguyentranminhthoi-shoe_store\\src\\shoesstore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{8C58419E-0CD0-49A9-95E1-5F31C3B32B41}|ShoesStore\\ShoesStore.csproj|solutionrelative:shoesstore\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -20,9 +20,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\CHUY\u00CAN \u0110\u1EC0 ASP TH\u1EDCI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\ShoesStore\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\ShoesStore\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "ShoesStore\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\CHUY\u00CAN \u0110\u1EC0 ASP TH\u1EDCI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\ShoesStore\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\ShoesStore\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "ShoesStore\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",

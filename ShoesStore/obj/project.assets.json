@@ -11382,11 +11382,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CHUYÊN ĐỀ ASP THỜI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\ShoesStore\\ShoesStore.csproj",
+      "projectUniqueName": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\ShoesStore\\ShoesStore.csproj",
       "projectName": "ShoesStore",
-      "projectPath": "D:\\CHUYÊN ĐỀ ASP THỜI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\ShoesStore\\ShoesStore.csproj",
+      "projectPath": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\ShoesStore\\ShoesStore.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\CHUYÊN ĐỀ ASP THỜI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\ShoesStore\\obj\\",
+      "outputPath": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\ShoesStore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

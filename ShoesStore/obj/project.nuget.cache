@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dR9AOT/5/bg=",
+  "dgSpecHash": "gOsDe6QPXik=",
   "success": true,
-  "projectFilePath": "D:\\CHUYÊN ĐỀ ASP THỜI\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\ShoesStore\\ShoesStore.csproj",
+  "projectFilePath": "D:\\ASPNET-DK24TTK2-NGUYENTRANMINHTHOI-SHOE_STORE\\src\\ShoesStore\\ShoesStore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
