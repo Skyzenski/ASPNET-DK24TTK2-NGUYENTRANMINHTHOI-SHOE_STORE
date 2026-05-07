@@ -586,11 +586,17 @@ private void SaveCart(List<Sanpham> cart)
 
 Views
 │
+
 ├── SanPham
+
 ├── Blog
+
 ├── TrackingOrder
+
 ├── Account
+
 ├── ShoppingCart
+
 └── Shared
 
 ## Trong SHOPPING của template sổ ra 4 mục All, Basketball, Football, Jogging, tìm hiểu cách code để có hiệu ứng tương tự
@@ -2419,6 +2425,67 @@ public class Donhang
 
 </li>
 ```
+
+## Trong ACCOUNT của template sổ ra 2 mục Login, Register , tìm hiểu cách code để có hiệu ứng tương tự.
+
+- Trong _Layout.cshtml: tìm menu navigation và thêm
+
+```text
+<li class="account-menu">
+    <a href="#">ACCOUNT</a>
+
+    <ul class="account-dropdown">
+        <li>
+            <a asp-controller="Account" asp-action="Login">
+                LOGIN
+            </a>
+        </li>
+
+        <li>
+            <a asp-controller="Account" asp-action="Register">
+                REGISTER
+            </a>
+        </li>
+    </ul>
+</li>
+```
+- Cập nhật _Layout.cshtml: thêm đoạn code dưới vào trong menu
+
+```text
+<li class="account-menu">
+    <a href="#">ACCOUNT</a>
+
+    <ul class="account-dropdown">
+        <li>
+            <a asp-controller="Account" asp-action="Login">
+                LOGIN
+            </a>
+        </li>
+
+        <li>
+            <a asp-controller="Account" asp-action="Register">
+                REGISTER
+            </a>
+        </li>
+    </ul>
+</li>
+```
+
+- Cập nhật style.css: thêm cuối file
+
+```text
+.account-menu{
+    position: relative;
+    list-style: none;
+}
+```
+- Thêm mới Register.cshtml
+
+```text
+Views/Account/Register.cshtml
+```
+
+
 
 
 
