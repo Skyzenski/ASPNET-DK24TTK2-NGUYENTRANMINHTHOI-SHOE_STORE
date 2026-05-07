@@ -2485,6 +2485,352 @@ public class Donhang
 Views/Account/Register.cshtml
 ```
 
+## Dựa vào trang Login của template tìm hiểu cách code để có content tương tự.
+
+- Thêm Views/Account/Login.cshtml
+
+```text
+@{
+    ViewData["Title"] = "Login/Register";
+}
+
+<div class="login-page">
+
+    <!-- Banner -->
+    <div class="login-banner">
+        <div class="login-banner-content">
+            <h1>Login/Register</h1>
+
+            <p>
+                Home →
+                <span>Login/Register</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="login-container">
+
+        <!-- Left -->
+        <div class="login-left">
+
+            <div class="overlay"></div>
+
+            <div class="login-left-content">
+                <h2>New to our website?</h2>
+
+                <p>
+                    There are advances being made in science and
+                    technology everyday, and a good example of this is the
+                </p>
+
+                <a asp-controller="Account"
+                   asp-action="Register"
+                   class="create-account-btn">
+                    CREATE AN ACCOUNT
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Right -->
+        <div class="login-right">
+
+            <h3>LOG IN TO ENTER</h3>
+
+            <form method="post">
+
+                <input type="text"
+                       name="username"
+                       placeholder="Username" />
+
+                <input type="password"
+                       name="password"
+                       placeholder="Password" />
+
+                <button type="submit">
+                    LOG IN
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+- Cập nhật wwwroot/css/style.css, thêm code vào cuối file
+
+```text
+/* LOGIN PAGE */
+
+.login-page{
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Banner */
+
+.login-banner{
+    height: 170px;
+
+    background: linear-gradient(to right, #ff6a00, #f9b233);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: 120px;
+
+    color: white;
+}
+
+.login-banner-content h1{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-banner-content p{
+    font-size: 14px;
+}
+
+/* Main */
+
+.login-container{
+    width: 85%;
+
+    margin: 70px auto;
+
+    display: flex;
+
+    background-color: white;
+}
+
+/* Left */
+
+.login-left{
+    width: 55%;
+
+    position: relative;
+
+    background-image: url('/images/login-bg.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay{
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.4);
+}
+
+.login-left-content{
+    position: relative;
+
+    color: white;
+
+    text-align: center;
+
+    width: 70%;
+}
+
+.login-left-content h2{
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.login-left-content p{
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.create-account-btn{
+    background-color: #ff7b00;
+
+    color: white;
+
+    padding: 14px 35px;
+
+    text-decoration: none;
+
+    display: inline-block;
+}
+
+/* Right */
+
+.login-right{
+    width: 45%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 60px;
+}
+
+.login-right h3{
+    text-align: center;
+
+    margin-bottom: 40px;
+
+    letter-spacing: 2px;
+}
+
+.login-right form{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-right input{
+    height: 50px;
+
+    margin-bottom: 20px;
+
+    border: none;
+
+    background-color: #edf1f7;
+
+    padding-left: 15px;
+
+    font-size: 15px;
+}
+
+.login-right button{
+    height: 50px;
+
+    border: none;
+
+    background: linear-gradient(to right, #ff6a00, #f9b233);
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+```
+- Cập nhật Controllers/AccountController.cs
+Thêm action Login POST
+```text
+[HttpPost]
+public IActionResult Login(string username, string password)
+{
+    var user = _context.Taikhoans
+        .FirstOrDefault(x =>
+            x.Tendangnhap == username &&
+            x.Matkhau == password);
+
+    if(user != null)
+    {
+        HttpContext.Session.SetString("User", user.Tendangnhap);
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    ViewBag.Error = "Sai tài khoản hoặc mật khẩu";
+
+    return View();
+}
+```
+
+- Cập nhật đầu file AccountController.cs
+
+```text
+using ShoesStore.Models;
+using Microsoft.EntityFrameworkCore;
+```
+
+- Cập nhật trong AccountController
+Thêm DbContext:
+
+```text
+private readonly ShoesDbContext _context;
+
+public AccountController(ShoesDbContext context)
+{
+    _context = context;
+}
+```
+
+- Thêm ảnh nền
+```text
+wwwroot/images/login-bg.jpg
+```
+
+## Dựa vào trang Register của template tìm hiểu cách code để có content tương tự.
+
+- Cập nhật AccountController.cs
+
+Thêm action Register POST
+```text
+[HttpPost]
+public IActionResult Register(
+    string username,
+    string email,
+    string password,
+    string phone,
+    string gender,
+    DateTime birthday)
+{
+    var checkUser = _context.Taikhoans
+        .FirstOrDefault(x => x.Tendangnhap == username);
+
+    if(checkUser != null)
+    {
+        ViewBag.Error = "Username already exists";
+
+        return View();
+    }
+
+    Taikhoan tk = new Taikhoan();
+
+    tk.Tendangnhap = username;
+    tk.Email = email;
+    tk.Matkhau = password;
+    tk.Sdt = phone;
+    tk.Gioitinh = gender;
+    tk.Ngaysinh = birthday;
+
+    _context.Taikhoans.Add(tk);
+
+    _context.SaveChanges();
+
+    return RedirectToAction("Login");
+}
+```
+
+- Cập nhật đầu file AccountController.cs
+
+```text
+using System;
+using System.Linq;
+```
+- Yêu cầu database, Model Taikhoan.cs cần có:
+```text
+public string Email { get; set; }
+
+public string Sdt { get; set; }
+
+public string Gioitinh { get; set; }
+
+public DateTime? Ngaysinh { get; set; }
+```
 
 
 
