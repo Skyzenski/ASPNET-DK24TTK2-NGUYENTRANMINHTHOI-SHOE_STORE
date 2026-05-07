@@ -595,14 +595,157 @@ Views
 
 ## Trong SHOPPING của template sổ ra 4 mục All, Basketball, Football, Jogging, tìm hiểu cách code để có hiệu ứng tương tự
 
-- Cập nhật _-MODEL Sanpham.cs
+- Cập nhật: MODEL -> Sanpham.cs
+```text
+using System.ComponentModel.DataAnnotations;
 
+public class Sanpham
+{
+    [Key]
+    public int Masp { get; set; }
 
+    public string Tensp { get; set; }
 
+    public decimal Gia { get; set; }
 
+    public string Hinhanh { get; set; }
 
+    public string Mota { get; set; }
 
+    public string Category { get; set; }
+}
+```
+- Cập nhật: SanPhamController.cs
+```text
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
+public class SanPhamController : Controller
+{
+    private readonly ShoesDbContext _context;
+
+    public SanPhamController(ShoesDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Index(string category)
+    {
+        var products = _context.Sanphams.AsQueryable();
+
+        if (!string.IsNullOrEmpty(category))
+        {
+            products = products.Where(x => x.Category == category);
+        }
+
+        return View(products.ToList());
+    }
+
+    public IActionResult Details(int id)
+    {
+        var sp = _context.Sanphams.Find(id);
+
+        if (sp == null)
+        {
+            return NotFound();
+        }
+
+        return View(sp);
+    }
+}
+```
+- Cập nhật: VIEWS/Shared/_Layout.cshtml
+
+Thêm dropdown Shopping:
+```text
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
+public class SanPhamController : Controller
+{
+    private readonly ShoesDbContext _context;
+
+    public SanPhamController(ShoesDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Index(string category)
+    {
+        var products = _context.Sanphams.AsQueryable();
+
+        if (!string.IsNullOrEmpty(category))
+        {
+            products = products.Where(x => x.Category == category);
+        }
+
+        return View(products.ToList());
+    }
+
+    public IActionResult Details(int id)
+    {
+        var sp = _context.Sanphams.Find(id);
+
+        if (sp == null)
+        {
+            return NotFound();
+        }
+
+        return View(sp);
+    }
+}
+```
+- Cập nhật: VIEWS/SanPham/Index.cshtml
+
+Hiển thị sản phẩm theo category:
+
+```text
+@model IEnumerable<Sanpham>
+
+<h2>Products</h2>
+
+<div class="row">
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+
+        <div class="card">
+
+            <img src="@item.Hinhanh"
+                 class="card-img-top">
+
+            <div class="card-body">
+
+                <h5>@item.Tensp</h5>
+
+                <p>@item.Gia VNĐ</p>
+
+                <p>@item.Category</p>
+
+                <a href="/SanPham/Details/@item.Masp"
+                   class="btn btn-primary">
+                    View
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+}
+
+</div>
+```
+- CÁCH HOẠT ĐỘNG
+
+/SanPham
+→ hiện ALL
+/SanPham?category=Basketball
+→ chỉ hiện Basketball
+/SanPham?category=Football
+→ chỉ hiện Football
+/SanPham?category=Jogging
+→ chỉ hiện Jogging
 
 
 
