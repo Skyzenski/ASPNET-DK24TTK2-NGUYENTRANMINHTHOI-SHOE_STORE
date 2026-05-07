@@ -98,7 +98,7 @@
 - _ViewStart.cshtml → cấu hình layout mặc định cho toàn bộ Views  
 - _Error.cshtml → trang hiển thị lỗi hệ thống  
 
-## Dựa vào cấu trúc cây thư mục của Template viết code cho từng mục trong MODELS; CONTROLLERS; VIEWS tạo ra các mục Shopping; Blog; Tracking; Account
+## Dựa vào cấu trúc cây thư mục của Template tìm hiểu cách viết code cho từng mục trong MODELS; CONTROLLERS; VIEWS tạo ra các mục Shopping; Blog; Tracking; Account
 
 - VIEWS/SanPham (SHOPPING)
 
@@ -592,6 +592,17 @@ Views
 ├── Account
 ├── ShoppingCart
 └── Shared
+
+## Trong SHOPPING của template sổ ra 4 mục All, Basketball, Football, Jogging, tìm hiểu cách code để có hiệu ứng tương tự
+
+- Cập nhật _-MODEL Sanpham.cs
+
+
+
+
+
+
+
 
 
 
