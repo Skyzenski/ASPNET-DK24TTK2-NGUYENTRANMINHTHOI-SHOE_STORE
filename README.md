@@ -1414,3 +1414,766 @@ public IActionResult Jogging()
 </ul>
 ```
 
+## Trong các trang All, Basketball; Football; Jogging dựa vào template đều có sản phẩm và trang của từng sản phẩm tìm hiểu cách code để có content tương tự cho 1 trang sản phẩm mẫu
+
+- Thêm file mới: Views/SanPham/Details.cshtml
+```text
+@model Sanpham
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+
+                <h1 class="text-white">
+                    Product Details Page
+                </h1>
+
+                <p class="text-white">
+                    Home → Shopping → Product Details
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="product-details-area">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- PRODUCT IMAGE -->
+
+            <div class="col-lg-6">
+
+                <div class="product-image-box">
+
+                    <img src="@Model.Hinhanh"
+                         class="img-fluid main-product-image" />
+
+                </div>
+
+            </div>
+
+            <!-- PRODUCT INFO -->
+
+            <div class="col-lg-6">
+
+                <div class="product-info">
+
+                    <h2>
+                        @Model.Tensp
+                    </h2>
+
+                    <h3 class="price">
+                        @Model.Gia.ToString("N0") đ
+                    </h3>
+
+                    <p class="mt-4">
+                        @Model.Mota
+                    </p>
+
+                    <!-- SIZE -->
+
+                    <div class="mt-4">
+
+                        <h5>
+                            Table Size
+                        </h5>
+
+                        <div class="size-group">
+
+                            <button class="size-btn">38</button>
+                            <button class="size-btn">39</button>
+                            <button class="size-btn">40</button>
+                            <button class="size-btn">41</button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BUTTON -->
+
+                    <div class="mt-4">
+
+                        <a href="/ShoppingCart/AddToCart/@Model.Masp"
+                           class="btn add-cart-btn">
+
+                            ADD TO CART
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TABS -->
+
+        <div class="product-tabs mt-5">
+
+            <ul class="nav nav-tabs">
+
+                <li class="nav-item">
+
+                    <button class="nav-link active"
+                            data-bs-toggle="tab"
+                            data-bs-target="#description">
+
+                        Description
+
+                    </button>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <button class="nav-link"
+                            data-bs-toggle="tab"
+                            data-bs-target="#reviews">
+
+                        Reviews
+
+                    </button>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <button class="nav-link"
+                            data-bs-toggle="tab"
+                            data-bs-target="#size">
+
+                        Size Table
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+            <div class="tab-content p-4 bg-white">
+
+                <!-- DESCRIPTION -->
+
+                <div class="tab-pane fade show active"
+                     id="description">
+
+                    <p>
+                        @Model.Mota
+                    </p>
+
+                </div>
+
+                <!-- REVIEWS -->
+
+                <div class="tab-pane fade"
+                     id="reviews">
+
+                    <h4>
+                        Based on 0 Reviews
+                    </h4>
+
+                    <p>
+                        Add a Review
+                    </p>
+
+                </div>
+
+                <!-- SIZE -->
+
+                <div class="tab-pane fade"
+                     id="size">
+
+                    <table class="table">
+
+                        <tr>
+                            <th>EU</th>
+                            <th>US</th>
+                        </tr>
+
+                        <tr>
+                            <td>38</td>
+                            <td>6</td>
+                        </tr>
+
+                        <tr>
+                            <td>39</td>
+                            <td>7</td>
+                        </tr>
+
+                        <tr>
+                            <td>40</td>
+                            <td>8</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- NEW PRODUCTS -->
+
+        <section class="new-products mt-5">
+
+            <h2 class="text-center mb-5">
+                NEW PRODUCTS
+            </h2>
+
+            <div class="row">
+
+                <div class="col-lg-3">
+
+                    <div class="new-product-card">
+
+                        <img src="/images/product/p1.jpg"
+                             class="img-fluid" />
+
+                        <h6>
+                            DURAMO SL 2.0
+                        </h6>
+
+                        <p>
+                            1,900,000đ
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <div class="new-product-card">
+
+                        <img src="/images/product/p2.jpg"
+                             class="img-fluid" />
+
+                        <h6>
+                            SUPER FAST ELITE
+                        </h6>
+
+                        <p>
+                            2,900,000đ
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <div class="new-product-card">
+
+                        <img src="/images/product/p3.jpg"
+                             class="img-fluid" />
+
+                        <h6>
+                            BLACK EDITION
+                        </h6>
+
+                        <p>
+                            2,800,000đ
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <div class="new-product-card">
+
+                        <img src="/images/product/p4.jpg"
+                             class="img-fluid" />
+
+                        <h6>
+                            ELITE FAST
+                        </h6>
+
+                        <p>
+                            5,900,000đ
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
+
+<style>
+
+    .banner-area{
+        background:#f97316;
+        padding:70px 0;
+    }
+
+    .banner-area h1{
+        font-size:40px;
+        font-weight:bold;
+    }
+
+    .product-details-area{
+        background:#f5f5f5;
+        padding:80px 0;
+    }
+
+    .product-image-box{
+        background:#e9ecef;
+        padding:40px;
+    }
+
+    .main-product-image{
+        width:100%;
+    }
+
+    .product-info h2{
+        font-size:30px;
+        font-weight:bold;
+    }
+
+    .price{
+        color:#f97316;
+        margin-top:10px;
+    }
+
+    .size-group{
+        display:flex;
+        gap:10px;
+    }
+
+    .size-btn{
+        border:1px solid #ddd;
+        background:white;
+        width:50px;
+        height:40px;
+    }
+
+    .add-cart-btn{
+        background:#f97316;
+        color:white;
+        padding:12px 30px;
+        border-radius:5px;
+    }
+
+    .product-tabs{
+        margin-top:80px;
+    }
+
+    .new-product-card{
+        background:white;
+        padding:15px;
+        text-align:center;
+    }
+
+</style>
+```
+- Cập nhật: Thêm action trong SanPhamController.cs
+
+```text
+public IActionResult Details(int id)
+{
+    var sp = _context.Sanphams.Find(id);
+
+    if (sp == null)
+    {
+        return NotFound();
+    }
+
+    return View(sp);
+}
+```
+
+- Cập nhật: Views/SanPham/Index.cshtml, tạo nút View Product để chuyển sang trang chi tiết
+
+```text
+<a href="/SanPham/Details/@item.Masp"
+   class="btn btn-dark">
+
+    View Product
+
+</a>
+```
+
+## Dựa vào trang BLOG của template tìm hiểu cách code để có content tương tự.
+
+```text
+@model IEnumerable<Blog>
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+<section class="banner-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+
+                <h1 class="text-white">
+                    Blog Page
+                </h1>
+
+                <p class="text-white">
+                    Home → Blog
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BLOG CATEGORY -->
+
+<section class="blog-category-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-4">
+
+                <div class="category-card">
+
+                    <img src="/images/blog/social.jpg"
+                         class="img-fluid category-image" />
+
+                    <div class="category-overlay">
+
+                        <h4>SOCIAL LIFE</h4>
+
+                        <p>Enjoy your social life together</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="category-card">
+
+                    <img src="/images/blog/politics.jpg"
+                         class="img-fluid category-image" />
+
+                    <div class="category-overlay">
+
+                        <h4>POLITICS</h4>
+
+                        <p>Be a part of politics</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="category-card">
+
+                    <img src="/images/blog/food.jpg"
+                         class="img-fluid category-image" />
+
+                    <div class="category-overlay">
+
+                        <h4>FOOD</h4>
+
+                        <p>Let the food be finished</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BLOG LIST -->
+
+<section class="blog-list-area">
+
+    <div class="container">
+
+        <h2 class="text-center mb-5">
+            Blog List
+        </h2>
+
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-5">
+
+                    <div class="blog-card">
+
+                        <img src="@item.Hinhanh"
+                             class="img-fluid blog-image" />
+
+                        <div class="blog-content">
+
+                            <h5>
+                                @item.Tieude
+                            </h5>
+
+                            <p>
+                                @item.Noidung
+                            </p>
+
+                            <a href="/Blog/Details/@item.Id"
+                               class="btn btn-outline-primary">
+
+                                View More
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+
+    .banner-area{
+        background:#f97316;
+        padding:70px 0;
+    }
+
+    .banner-area h1{
+        font-size:45px;
+        font-weight:bold;
+    }
+
+    .blog-category-area{
+        padding:60px 0;
+        background:#f5f5f5;
+    }
+
+    .category-card{
+        position:relative;
+        overflow:hidden;
+    }
+
+    .category-image{
+        width:100%;
+        height:180px;
+        object-fit:cover;
+    }
+
+    .category-overlay{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.5);
+        color:white;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .blog-list-area{
+        padding:70px 0;
+        background:#f5f5f5;
+    }
+
+    .blog-card{
+        background:white;
+        border:1px solid #ddd;
+        transition:0.3s;
+    }
+
+    .blog-card:hover{
+        transform:translateY(-5px);
+    }
+
+    .blog-image{
+        width:100%;
+        height:250px;
+        object-fit:cover;
+    }
+
+    .blog-content{
+        padding:20px;
+        text-align:center;
+    }
+
+</style>
+```
+- BlogController.cs
+
+```text
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
+public class BlogController : Controller
+{
+    private readonly ShoesDbContext _context;
+
+    public BlogController(ShoesDbContext context)
+    {
+        _context = context;
+    }
+
+    public IActionResult Index()
+    {
+        var blogs = _context.Blogs.ToList();
+
+        return View(blogs);
+    }
+
+    public IActionResult Details(int id)
+    {
+        var blog = _context.Blogs.Find(id);
+
+        if (blog == null)
+        {
+            return NotFound();
+        }
+
+        return View(blog);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Blog blog)
+    {
+        _context.Blogs.Add(blog);
+        _context.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Edit(int id)
+    {
+        var blog = _context.Blogs.Find(id);
+
+        return View(blog);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Blog blog)
+    {
+        _context.Blogs.Update(blog);
+        _context.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        var blog = _context.Blogs.Find(id);
+
+        return View(blog);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var blog = _context.Blogs.Find(id);
+
+        _context.Blogs.Remove(blog);
+
+        _context.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
+}
+```
+- Blog.cs
+
+```text
+using System.ComponentModel.DataAnnotations;
+
+public class Blog
+{
+    [Key]
+    public int Id { get; set; }
+
+    public string Tieude { get; set; }
+
+    public string Noidung { get; set; }
+
+    public string Hinhanh { get; set; }
+
+    public DateTime Ngaydang { get; set; }
+}
+```
+- Blog/Details.cshtml
+
+```text
+@model Blog
+
+<section class="container mt-5">
+
+    <img src="@Model.Hinhanh"
+         class="img-fluid mb-4" />
+
+    <h1>
+        @Model.Tieude
+    </h1>
+
+    <p>
+        @Model.Ngaydang.ToShortDateString()
+    </p>
+
+    <p>
+        @Model.Noidung
+    </p>
+
+</section>
+```
+
+
+
+
+
+
+
