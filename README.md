@@ -15,12 +15,13 @@ Email: nguyentranminhthoi93@gmail.com
 
 ## Quá trình
 1. **Chuẩn bị dữ liệu**
-   - Download folder chứa template và file `.bacpac`
-   - Mở SQL Server → Import Data-tier Application → Import from local disk → Browse đến file `.bacpac` để có database và dữ liệu
+   - Download folder Source (src) → Mở Folder ShoesStore → Tìm file ShoesStore2.bacpac
+   - Mở SQL Server → Import Data-tier Application → Import from local disk → Browse đến file `ShoesStore2.bacpac` để có database và dữ liệu
 
 2. **Kết nối database trong Visual Studio**
    - Copy dòng lệnh từ tab **[Databases]** trong Connection String
    - Paste vào dòng 62 trong `ShoesDbContext.cs` và dòng 9 trong `appsetting.json`
+   - Mở file ShoesStore (Type C# Project file) trong Folder ShoesStore bằng Visual Studio
 
 3. **Chạy và sửa giao diện web**
    - Mở giao diện web, tìm và sửa lỗi, thay đổi nội dung trong khả năng
